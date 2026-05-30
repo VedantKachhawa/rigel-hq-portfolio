@@ -15,11 +15,11 @@ import {
   type ProjectCategory,
 } from "@/lib/projects";
 
-type FilterId = "all" | "folders" | ProjectCategory;
+type FilterId = "all" | "multi-projects" | ProjectCategory;
 
 const FILTERS: { id: FilterId; label: string }[] = [
   { id: "all", label: "All" },
-  { id: "folders", label: "Folders" },
+  { id: "multi-projects", label: "Multi-Projects" },
   { id: "real-estate", label: "Real Estate" },
   { id: "fashion-luxury", label: "Fashion & Luxury" },
   { id: "concept-fashion", label: "Concept Fashion" },
@@ -45,7 +45,7 @@ export function Projects(): ReactNode {
   const filtered =
     activeFilter === "all"
       ? ALL_ITEMS
-      : activeFilter === "folders"
+      : activeFilter === "multi-projects"
         ? ALL_ITEMS.filter((item) => item.type === "collection")
         : ALL_ITEMS.filter((item) => item.data.category === activeFilter);
 
@@ -339,7 +339,7 @@ function CollectionBentoCard({
             <div className="absolute right-3 top-3">
               <span className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-black/50 px-2.5 py-1 text-[11px] font-medium text-white/70 backdrop-blur-sm">
                 <Layers className="h-3 w-3" aria-hidden="true" />
-                {count} {count === 1 ? "project" : "projects"}
+                Multi-Project
               </span>
             </div>
 
