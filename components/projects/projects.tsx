@@ -153,6 +153,7 @@ function BentoCard({
 }): ReactNode {
   const Icon = project.icon;
   const isWide = colSpan === 7;
+  const hasRealCover = !project.cardImage.startsWith("https://");
 
   return (
     <motion.div
@@ -177,18 +178,29 @@ function BentoCard({
               isWide ? "aspect-[16/10]" : "aspect-[4/3]"
             }`}
           >
-            <Image
-              src={project.cardImage}
-              alt={project.cardImageAlt}
-              fill
-              sizes={
-                isWide
-                  ? "(min-width: 768px) 680px, 100vw"
-                  : "(min-width: 768px) 480px, 100vw"
-              }
-              className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-              priority={index < 2}
-            />
+            {hasRealCover ? (
+              <Image
+                src={project.cardImage}
+                alt={project.cardImageAlt}
+                fill
+                sizes={
+                  isWide
+                    ? "(min-width: 768px) 680px, 100vw"
+                    : "(min-width: 768px) 480px, 100vw"
+                }
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                priority={index < 2}
+              />
+            ) : (
+              <div className="absolute inset-0 flex items-center justify-center bg-foreground/5">
+                <span
+                  className="text-sm text-foreground/30"
+                  style={{ fontFamily: "var(--font-dm-sans, sans-serif)" }}
+                >
+                  Uploading Soon
+                </span>
+              </div>
+            )}
 
             {/* Halftone */}
             <div
@@ -263,6 +275,7 @@ function CollectionBentoCard({
   const Icon = collection.icon;
   const isWide = colSpan === 7;
   const count = collection.subProjects.length;
+  const hasRealCover = !collection.cardImage.startsWith("https://");
 
   return (
     <motion.div
@@ -287,18 +300,29 @@ function CollectionBentoCard({
               isWide ? "aspect-[16/10]" : "aspect-[4/3]"
             }`}
           >
-            <Image
-              src={collection.cardImage}
-              alt={collection.cardImageAlt}
-              fill
-              sizes={
-                isWide
-                  ? "(min-width: 768px) 680px, 100vw"
-                  : "(min-width: 768px) 480px, 100vw"
-              }
-              className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-              priority={index < 2}
-            />
+            {hasRealCover ? (
+              <Image
+                src={collection.cardImage}
+                alt={collection.cardImageAlt}
+                fill
+                sizes={
+                  isWide
+                    ? "(min-width: 768px) 680px, 100vw"
+                    : "(min-width: 768px) 480px, 100vw"
+                }
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                priority={index < 2}
+              />
+            ) : (
+              <div className="absolute inset-0 flex items-center justify-center bg-foreground/5">
+                <span
+                  className="text-sm text-foreground/30"
+                  style={{ fontFamily: "var(--font-dm-sans, sans-serif)" }}
+                >
+                  Uploading Soon
+                </span>
+              </div>
+            )}
 
             {/* Halftone */}
             <div

@@ -448,8 +448,10 @@ export function ImmersiveIntro() {
         const s2In   = clamp((sp - 0.68) / 0.16, 0, 1);
         const exitT  = clamp((sp - 0.84) / 0.16, 0, 1);
         const exitEased = exitT < 0.5 ? 2 * exitT * exitT : -1 + (4 - 2 * exitT) * exitT;
-        scene2Ref.current.style.opacity   = String(s2In * (1 - exitEased));
-        scene2Ref.current.style.transform = `translateY(${-36 * exitEased}px)`;
+        const s2Opacity = s2In * (1 - exitEased);
+        scene2Ref.current.style.opacity        = String(s2Opacity);
+        scene2Ref.current.style.transform      = `translateY(${-36 * exitEased}px)`;
+        scene2Ref.current.style.pointerEvents  = s2Opacity > 0.05 ? "auto" : "none";
       }
       if (arcWrapRef.current) {
         const exitT = clamp((sp - 0.84) / 0.16, 0, 1);
@@ -928,6 +930,7 @@ export function ImmersiveIntro() {
             inset: 0,
             zIndex: 46,
             opacity: 0,
+            pointerEvents: "none",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
