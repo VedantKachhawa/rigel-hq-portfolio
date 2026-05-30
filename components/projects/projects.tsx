@@ -124,14 +124,14 @@ export function Projects(): ReactNode {
                   key={item.data.id}
                   project={item.data}
                   index={index}
-                  colSpan={COL_SPANS[index % COL_SPANS.length]}
+                  colSpan={COL_SPANS[index % COL_SPANS.length]!}
                 />
               ) : (
                 <CollectionBentoCard
                   key={item.data.id}
                   collection={item.data}
                   index={index}
-                  colSpan={COL_SPANS[index % COL_SPANS.length]}
+                  colSpan={COL_SPANS[index % COL_SPANS.length]!}
                 />
               )
             )}
