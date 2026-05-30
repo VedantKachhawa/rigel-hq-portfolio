@@ -59,7 +59,7 @@ function createTouchTexture() {
     update() {
       clear();
       for (let i = trail.length - 1; i >= 0; i--) {
-        const p = trail[i];
+        const p = trail[i]!;
         const f = p.force * (1 / maxAge) * (1 - p.age / maxAge);
         p.x += p.vx * f; p.y += p.vy * f; p.age++;
         if (p.age > maxAge) trail.splice(i, 1);
@@ -211,9 +211,9 @@ export default function PixelBlast({
   rippleThickness = 0.1,
   rippleIntensityScale = 1,
   liquid = false,
-  liquidStrength = 0.1,
+  liquidStrength: _liquidStrength = 0.1,
   liquidRadius = 1,
-  liquidWobbleSpeed = 4.5,
+  liquidWobbleSpeed: _liquidWobbleSpeed = 4.5,
   speed = 0.5,
   edgeFade = 0.25,
   transparent = true,

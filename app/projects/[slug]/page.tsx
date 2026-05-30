@@ -144,7 +144,7 @@ function CollectionLanding({ collection }: { collection: ProjectCollection }): R
                 project={sub}
                 collectionId={collection.id}
                 index={index}
-                colSpan={COL_SPANS[index % COL_SPANS.length]}
+                colSpan={COL_SPANS[index % COL_SPANS.length]!}
               />
             ))}
           </div>
