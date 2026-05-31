@@ -19,7 +19,7 @@ extend({ MeshLineGeometry, MeshLineMaterial });
 
 const CARD_GLB = "/lanyard/card.glb";
 const LANYARD_PNG = "/lanyard/lanyard.png";
-const RIGEL_LOGO = "/lanyard/rigel-logo.png";
+const RIGEL_LOGO = "https://res.cloudinary.com/dz0nu25ls/image/upload/q_auto/f_auto/v1780271101/R_logo_cmryrt.jpg";
 // 1×1 transparent PNG fallback while the card texture is generating
 const EMPTY_TEX =
   "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII=";

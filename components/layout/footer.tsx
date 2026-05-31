@@ -84,9 +84,9 @@ export function Footer(): ReactNode {
             <div className="md:col-span-5 flex flex-col gap-4">
               <div className="flex items-center gap-3">
                 <Image
-                  src="/rigel-logo.png"
-                  alt="Rigel HQ logo"
-                  width={36}
+              src="https://res.cloudinary.com/dz0nu25ls/image/upload/q_auto/f_auto/v1780271054/Rigel_-_R_logo_uervhx.png"
+              alt="Rigel HQ logo"
+              width={36}
                   height={36}
                   className="h-9 w-9 object-contain"
                 />

@@ -39,10 +39,10 @@ export default function PrivacyPolicyPage(): ReactNode {
               Rigel HQ (&ldquo;we&rdquo;, &ldquo;us&rdquo;, &ldquo;our&rdquo;)
               is a content production studio based in Dubai, UAE. Our website is{" "}
               <a
-                href="https://rigelhq.com"
+                href="https://rigelstudios.co"
                 className="text-foreground underline underline-offset-2"
               >
-                rigelhq.com
+                rigelstudios.co
               </a>
               .
             </p>

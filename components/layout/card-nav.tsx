@@ -214,7 +214,7 @@ export function CardNav(): ReactNode {
           {/* Logo */}
           <div className="card-nav-logo">
             <Image
-              src="/rigel-logo.png"
+              src="https://res.cloudinary.com/dz0nu25ls/image/upload/q_auto/f_auto/v1780271054/Rigel_-_R_logo_uervhx.png"
               alt="Rigel HQ"
               width={28}
               height={28}
