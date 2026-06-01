@@ -189,6 +189,7 @@ function BentoCard({
                     : "(min-width: 768px) 480px, 100vw"
                 }
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                style={{ objectPosition: project.cardImagePosition ?? "center" }}
                 priority={index < 2}
               />
             ) : (
@@ -311,6 +312,7 @@ function CollectionBentoCard({
                     : "(min-width: 768px) 480px, 100vw"
                 }
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                style={{ objectPosition: collection.cardImagePosition ?? "center" }}
                 priority={index < 2}
               />
             ) : (

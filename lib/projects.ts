@@ -54,6 +54,8 @@ export type Project = {
   imageRatio: number;
   cardImage: string;
   cardImageAlt: string;
+  /** CSS object-position for cover crops, e.g. "center 20%" */
+  cardImagePosition?: string;
   mediaType: MediaType;
   category: ProjectCategory;
   images: ProjectImage[];
@@ -71,6 +73,8 @@ export type ProjectCollection = {
   meta: string;
   cardImage: string;
   cardImageAlt: string;
+  /** CSS object-position for cover crops, e.g. "center 20%" */
+  cardImagePosition?: string;
   category: ProjectCategory;
   subProjects: Project[];
   bgAccent: string;
@@ -244,6 +248,7 @@ export const PROJECTS: Project[] = [
     imageRatio: 9 / 16,
     cardImage: "https://res.cloudinary.com/dz0nu25ls/image/upload/q_auto/f_auto/v1780244194/WhatsApp_Image_2026-05-25_at_1.52.44_AM_6_bpufdb.jpg",
     cardImageAlt: "Supreme",
+    cardImagePosition: "center 22%",
     category: "fashion-luxury",
     mediaType: "photo-only",
     bgAccent: "#C41E3A",
@@ -420,6 +425,7 @@ export const COLLECTIONS: ProjectCollection[] = [
     meta: "TOTEM · Dubai, 2026",
     cardImage: "https://res.cloudinary.com/dz0nu25ls/image/upload/q_auto/f_auto/v1780268160/WhatsApp_Image_2026-05-26_at_2.56.36_AM_1_vazmeg.jpg",
     cardImageAlt: "TOTEM",
+    cardImagePosition: "center 18%",
     category: "concept-fashion",
     bgAccent: "#8B5E3C",
     subProjects: [
@@ -529,6 +535,7 @@ export const COLLECTIONS: ProjectCollection[] = [
     meta: "Call Me Krazy · Dubai, 2026",
     cardImage: "https://res.cloudinary.com/dz0nu25ls/image/upload/q_auto/f_auto/v1780269508/WhatsApp_Image_2026-05-25_at_3.34.03_AM_5_mcahol.jpg",
     cardImageAlt: "Call Me Krazy",
+    cardImagePosition: "center 20%",
     category: "concept-fashion",
     bgAccent: "#8B2FC9",
     subProjects: [
@@ -577,6 +584,7 @@ export const COLLECTIONS: ProjectCollection[] = [
     meta: "Malabar Gold & Diamonds · Dubai, 2026",
     cardImage: "https://res.cloudinary.com/dz0nu25ls/image/upload/q_auto/f_auto/v1780243740/Untitled_design_44_cjoc7h.png",
     cardImageAlt: "Malabar Gold & Diamonds",
+    cardImagePosition: "center 25%",
     category: "fashion-luxury",
     bgAccent: "#D4AF37",
     subProjects: [

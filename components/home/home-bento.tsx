@@ -8,7 +8,6 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { PROJECTS, CATEGORY_LABELS } from "@/lib/projects";
 import { motion, useInView } from "motion/react";
-import { Backlight } from "@/components/ui/backlight";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -21,7 +20,6 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 function ProjectCard({ project, size = "normal" }: { project: (typeof PROJECTS)[0]; size?: "normal" | "large" }) {
   const Icon = project.icon;
   return (
-    <Backlight blur={18}>
     <Link
       href={`/projects/${project.id}`}
       className="group relative block overflow-hidden rounded-2xl border border-foreground/8 bg-foreground/4 cursor-pointer pointer-events-auto"
@@ -34,6 +32,7 @@ function ProjectCard({ project, size = "normal" }: { project: (typeof PROJECTS)[
         fill
         sizes="320px"
         className="object-cover transition-transform duration-700 ease-out group-hover:scale-107"
+        style={{ objectPosition: project.cardImagePosition ?? "center" }}
         unoptimized
       />
 
@@ -65,7 +64,6 @@ function ProjectCard({ project, size = "normal" }: { project: (typeof PROJECTS)[
         </p>
       </div>
     </Link>
-    </Backlight>
   );
 }
 
@@ -118,7 +116,7 @@ export function HomeBento() {
       <section
         ref={sectionRef}
         className="relative hidden md:block"
-        style={{ height: "260vh" }}
+        style={{ height: "285vh" }}
       >
         {/* Sticky center — stays pinned at viewport center the whole scroll */}
         <div

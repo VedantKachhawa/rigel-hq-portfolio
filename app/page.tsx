@@ -39,7 +39,7 @@ export default function HomePage(): ReactNode {
         {/* 5 — Featured bento grid */}
         <HomeBento />
 
-        <WorkMarquee />
+        <WorkMarquee className="mt-20 md:mt-28" />
       </main>
       </HomeWrapper>
     </>

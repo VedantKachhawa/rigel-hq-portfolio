@@ -1,19 +1,43 @@
 "use client";
+
 import dynamic from "next/dynamic";
-import { useRef, useState } from "react";
+import { Component, type ErrorInfo, type ReactNode, useRef, useState } from "react";
 
 const Lanyard = dynamic(() => import("@/components/studio/lanyard"), { ssr: false });
 
+class LanyardErrorBoundary extends Component<
+  { children: ReactNode; onError: () => void },
+  { hasError: boolean }
+> {
+  state = { hasError: false };
+
+  static getDerivedStateFromError(): { hasError: boolean } {
+    return { hasError: true };
+  }
+
+  componentDidCatch(_error: Error, _info: ErrorInfo): void {
+    this.props.onError();
+  }
+
+  render(): ReactNode {
+    if (this.state.hasError) return null;
+    return this.props.children;
+  }
+}
+
 export function LanyardLoader() {
   const [open, setOpen] = useState(false);
+  const [loadError, setLoadError] = useState(false);
   const btnRef = useRef<HTMLButtonElement>(null);
 
   return (
     <>
-      {/* Toggle button — fixed bottom-right, always visible on the studio page */}
       <button
         ref={btnRef}
-        onClick={() => setOpen((o) => !o)}
+        onClick={() => {
+          setLoadError(false);
+          setOpen((o) => !o);
+        }}
         style={{
           position: "fixed",
           bottom: "2rem",
@@ -48,7 +72,6 @@ export function LanyardLoader() {
             : "rgba(255,255,255,0.07)")
         }
       >
-        {/* small lanyard icon */}
         <svg
           width="14"
           height="14"
@@ -67,7 +90,6 @@ export function LanyardLoader() {
         {open ? "HIDE CARD" : "ID CARD"}
       </button>
 
-      {/* Fullscreen canvas — pointer-events off when hidden so page is usable */}
       {open && (
         <div
           style={{
@@ -77,8 +99,26 @@ export function LanyardLoader() {
             pointerEvents: "auto",
           }}
         >
-          <Lanyard position={[0, 0, 22]} gravity={[0, -40, 0]} transparent />
-
+          {loadError ? (
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                color: "rgba(255,255,255,0.6)",
+                fontSize: "0.85rem",
+                letterSpacing: "0.08em",
+              }}
+            >
+              Unable to load ID card. Please refresh and try again.
+            </div>
+          ) : (
+            <LanyardErrorBoundary onError={() => setLoadError(true)}>
+              <Lanyard position={[0, 0, 22]} gravity={[0, -40, 0]} transparent />
+            </LanyardErrorBoundary>
+          )}
         </div>
       )}
     </>

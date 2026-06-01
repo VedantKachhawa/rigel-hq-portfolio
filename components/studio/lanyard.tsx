@@ -18,8 +18,8 @@ import * as THREE from "three";
 extend({ MeshLineGeometry, MeshLineMaterial });
 
 const CARD_GLB = "/lanyard/card.glb";
-const LANYARD_PNG = "/lanyard/lanyard.png";
-const RIGEL_LOGO = "https://res.cloudinary.com/dz0nu25ls/image/upload/q_auto/f_auto/v1780271101/R_logo_cmryrt.jpg";
+const RIGEL_LOGO =
+  "https://res.cloudinary.com/dz0nu25ls/image/upload/q_auto/f_auto/v1780271054/Rigel_-_R_logo_uervhx.png";
 // 1×1 transparent PNG fallback while the card texture is generating
 const EMPTY_TEX =
   "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII=";
@@ -30,6 +30,30 @@ const EMPTY_TEX =
 // Height of the printable area within each half:
 const CARD_IMAGE_HEIGHT_SCALE = 0.757;
 const RESOLUTION = 1024;
+
+function createLanyardStrapTexture(): THREE.CanvasTexture {
+  const canvas = document.createElement("canvas");
+  canvas.width = 128;
+  canvas.height = 512;
+  const ctx = canvas.getContext("2d")!;
+
+  const gradient = ctx.createLinearGradient(0, 0, 128, 0);
+  gradient.addColorStop(0, "#e8e8e8");
+  gradient.addColorStop(0.5, "#ffffff");
+  gradient.addColorStop(1, "#e8e8e8");
+  ctx.fillStyle = gradient;
+  ctx.fillRect(0, 0, 128, 512);
+
+  ctx.fillStyle = "rgba(0,0,0,0.05)";
+  for (let y = 0; y < 512; y += 8) {
+    ctx.fillRect(0, y, 128, 3);
+  }
+
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+  texture.anisotropy = 16;
+  return texture;
+}
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 type LanyardProps = {
@@ -94,6 +118,7 @@ function useCardTexture(): string {
           resolve();
         };
         img.onerror = () => resolve();
+        img.crossOrigin = "anonymous";
         img.src = RIGEL_LOGO;
       });
 
@@ -179,7 +204,7 @@ function Band({
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { nodes, materials } = useGLTF(CARD_GLB) as any;
-  const lanyardTexture = useTexture(LANYARD_PNG);
+  const lanyardTexture = useMemo(() => createLanyardStrapTexture(), []);
   // Card texture: single image split left (front) / right (back)
   const cardTexture = useTexture(cardImageSrc || EMPTY_TEX);
 
@@ -459,3 +484,5 @@ export default function Lanyard({
     </div>
   );
 }
+
+useGLTF.preload(CARD_GLB);

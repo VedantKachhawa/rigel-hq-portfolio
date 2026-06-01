@@ -82,7 +82,7 @@ export function Hero(): ReactNode {
           Desktop and mobile have different parallax magnitudes.
           Tailwind v4 `translate` property + Motion `transform` don't conflict. */}
       <motion.div
-        style={{ y: cloudYDesktop, translateY: "-59%" }}
+        style={{ y: cloudYDesktop, translateY: "-67%" }}
         className="pointer-events-none absolute top-0 left-0 w-full z-[100] hidden md:block"
         aria-hidden="true"
       >
@@ -94,7 +94,7 @@ export function Hero(): ReactNode {
         />
       </motion.div>
       <motion.div
-        style={{ y: cloudYMobile, translateY: "-59%" }}
+        style={{ y: cloudYMobile, translateY: "-67%" }}
         className="pointer-events-none absolute top-0 left-0 w-full z-[100] block md:hidden"
         aria-hidden="true"
       >

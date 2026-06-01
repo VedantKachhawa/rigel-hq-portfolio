@@ -81,7 +81,7 @@ function CollectionLanding({ collection }: { collection: ProjectCollection }): R
             alt=""
             fill
             className="object-cover scale-110 opacity-[0.12]"
-            style={{ filter: "blur(40px)" }}
+            style={{ filter: "blur(40px)", objectPosition: collection.cardImagePosition ?? "center" }}
             priority
           />
         </div>
@@ -190,6 +190,7 @@ function SubProjectCard({
                 : "(min-width: 768px) 480px, 100vw"
             }
             className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+            style={{ objectPosition: project.cardImagePosition ?? "center" }}
             priority={index < 2}
           />
 
@@ -289,7 +290,7 @@ export function ProjectDetail({
             alt=""
             fill
             className="object-cover scale-110 opacity-[0.12]"
-            style={{ filter: "blur(40px)" }}
+            style={{ filter: "blur(40px)", objectPosition: project.cardImagePosition ?? "center" }}
             priority
           />
         </div>
