@@ -21,7 +21,7 @@ export function WorkMarquee({ className }: { className?: string }) {
   }, []);
 
   return (
-    <div className={`overflow-hidden py-4 select-none pointer-events-none bg-background${className ? ` ${className}` : ""}`}>
+    <div className={`overflow-hidden py-3 select-none pointer-events-none bg-background${className ? ` ${className}` : ""}`}>
       <div
         ref={trackRef}
         className="flex whitespace-nowrap will-change-transform"

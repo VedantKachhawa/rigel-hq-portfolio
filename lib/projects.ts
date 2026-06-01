@@ -281,6 +281,7 @@ export const PROJECTS: Project[] = [
     imageRatio: 3 / 4,
     cardImage: "https://res.cloudinary.com/dz0nu25ls/image/upload/q_auto/f_auto/v1780247202/WhatsApp_Image_2026-05-25_at_5.05.35_PM_3_e0jl0m.jpg",
     cardImageAlt: "Orphic",
+    cardImagePosition: "center 12%",
     category: "fashion-luxury",
     mediaType: "both",
     bgAccent: "#5B3A8C",
@@ -425,7 +426,7 @@ export const COLLECTIONS: ProjectCollection[] = [
     meta: "TOTEM · Dubai, 2026",
     cardImage: "https://res.cloudinary.com/dz0nu25ls/image/upload/q_auto/f_auto/v1780268160/WhatsApp_Image_2026-05-26_at_2.56.36_AM_1_vazmeg.jpg",
     cardImageAlt: "TOTEM",
-    cardImagePosition: "center 18%",
+    cardImagePosition: "center 30%",
     category: "concept-fashion",
     bgAccent: "#8B5E3C",
     subProjects: [
@@ -535,7 +536,7 @@ export const COLLECTIONS: ProjectCollection[] = [
     meta: "Call Me Krazy · Dubai, 2026",
     cardImage: "https://res.cloudinary.com/dz0nu25ls/image/upload/q_auto/f_auto/v1780269508/WhatsApp_Image_2026-05-25_at_3.34.03_AM_5_mcahol.jpg",
     cardImageAlt: "Call Me Krazy",
-    cardImagePosition: "center 20%",
+    cardImagePosition: "center 32%",
     category: "concept-fashion",
     bgAccent: "#8B2FC9",
     subProjects: [
@@ -584,7 +585,7 @@ export const COLLECTIONS: ProjectCollection[] = [
     meta: "Malabar Gold & Diamonds · Dubai, 2026",
     cardImage: "https://res.cloudinary.com/dz0nu25ls/image/upload/q_auto/f_auto/v1780243740/Untitled_design_44_cjoc7h.png",
     cardImageAlt: "Malabar Gold & Diamonds",
-    cardImagePosition: "center 25%",
+    cardImagePosition: "center 38%",
     category: "fashion-luxury",
     bgAccent: "#D4AF37",
     subProjects: [

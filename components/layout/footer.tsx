@@ -66,11 +66,11 @@ export function Footer(): ReactNode {
       {/* Gradient bridge — dissolves page background into the footer video */}
       <div
         className="pointer-events-none absolute top-0 left-0 right-0 z-[2]"
-        style={{ height: "220px", background: "linear-gradient(to bottom, var(--background) 0%, transparent 100%)" }}
+        style={{ height: "200px", background: "linear-gradient(to bottom, var(--background) 0%, transparent 100%)" }}
         aria-hidden="true"
       />
 
-      <div className="relative z-10 w-full max-w-275 mx-auto px-6 pt-32 pb-16 sm:px-10 sm:pt-44 sm:pb-20">
+      <div className="relative z-10 w-full max-w-275 mx-auto px-6 pt-28 pb-16 sm:px-10 sm:pt-40 sm:pb-20">
         <motion.footer
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
