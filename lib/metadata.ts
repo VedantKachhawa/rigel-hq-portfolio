@@ -24,6 +24,11 @@ export const siteConfig = {
   ],
 } as const;
 
+const RIGEL_FAVICON =
+  "https://res.cloudinary.com/dz0nu25ls/image/upload/w_32,h_32,c_fill/q_auto/f_auto/v1780271101/R_logo_cmryrt.jpg";
+const RIGEL_APPLE_ICON =
+  "https://res.cloudinary.com/dz0nu25ls/image/upload/w_180,h_180,c_fill/q_auto/f_auto/v1780271101/R_logo_cmryrt.jpg";
+
 export const baseMetadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
@@ -71,6 +76,11 @@ export const baseMetadata: Metadata = {
     description: siteConfig.description,
     images: [siteConfig.ogImage],
     creator: siteConfig.creator,
+  },
+  icons: {
+    icon: [{ url: RIGEL_FAVICON, type: "image/jpeg", sizes: "32x32" }],
+    shortcut: RIGEL_FAVICON,
+    apple: [{ url: RIGEL_APPLE_ICON, type: "image/jpeg", sizes: "180x180" }],
   },
   manifest: "/site.webmanifest",
 };
