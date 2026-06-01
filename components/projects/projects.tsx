@@ -153,7 +153,7 @@ function BentoCard({
 }): ReactNode {
   const Icon = project.icon;
   const isWide = colSpan === 7;
-  const hasRealCover = !project.cardImage.startsWith("https://");
+  const hasRealCover = !project.cardImage.includes("picsum");
 
   return (
     <motion.div
@@ -275,7 +275,7 @@ function CollectionBentoCard({
   const Icon = collection.icon;
   const isWide = colSpan === 7;
   const count = collection.subProjects.length;
-  const hasRealCover = !collection.cardImage.startsWith("https://");
+  const hasRealCover = !collection.cardImage.includes("picsum");
 
   return (
     <motion.div

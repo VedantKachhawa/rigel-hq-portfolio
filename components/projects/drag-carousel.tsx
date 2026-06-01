@@ -6,7 +6,15 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { X } from "lucide-react";
 import type { ProjectImage, ProjectVideo } from "@/lib/projects";
+import { cloudinaryVideoPoster } from "@/lib/cloudinary";
 import { MediaModal } from "@/components/ui/media-modal";
+
+function resolveVideoPoster(video: ProjectVideo): string {
+  if (video.src?.includes("res.cloudinary.com") && video.src.includes("/video/upload/")) {
+    return cloudinaryVideoPoster(video.src);
+  }
+  return video.poster;
+}
 
 const FULL_WIDTH_PX = 120;
 const COLLAPSED_WIDTH_PX = 35;
@@ -140,7 +148,7 @@ export function DragCarousel({ images, videos = [] }: { images: ProjectImage[]; 
                 videoSrc={v.src}
                 vimeoId={v.vimeoId}
                 vimeoPadding={v.vimeoPadding}
-                poster={v.poster}
+                poster={resolveVideoPoster(v)}
                 label={v.label}
               />
             ))}

@@ -28,8 +28,8 @@ const WORK_VIDEO =
   "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260418_063509_7d167302-4fd4-480b-8260-18ab572333d4.mp4";
 
 const TEAM = [
-  { name: "Vedant Kachhawa", role: "Founder & CEO", initials: "VK", photo: "/vedant.png" },
-  { name: "Siddhant Nair",   role: "Director (Client Relations)", initials: "SN", photo: "/siddhant.png" },
+  { name: "Vedant Kachhawa", role: "Founder & CEO", initials: "VK", photo: "https://res.cloudinary.com/dz0nu25ls/image/upload/q_auto/f_auto/v1780270962/vedant_perf_headshot_picture_fxzuzv.jpg" },
+  { name: "Siddhant Nair",   role: "Director (Client Relations)", initials: "SN", photo: "https://res.cloudinary.com/dz0nu25ls/image/upload/q_auto/f_auto/v1780270566/siddhant_mkjumd.jpg" },
 ];
 
 type ServiceIcon = { icon: LucideIcon; label: string };

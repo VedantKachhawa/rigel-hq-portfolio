@@ -271,8 +271,8 @@ export function ProjectDetail({
   const videos = project.mediaType !== "photo-only" ? project.videos : [];
   const hasMedia = images.length > 0 || videos.length > 0;
   const hasRealMedia =
-    images.some((img) => img.src.startsWith("/projects/")) ||
-    videos.some((v) => v.src?.startsWith("/projects/"));
+    images.some((img) => img.src && !img.src.includes("picsum")) ||
+    videos.some((v) => !!v.src);
 
   // Fall back to adjacent flat projects if no explicit prev/next passed
   const { prev: adjPrev, next: adjNext } = getAdjacentProjects(project.id);

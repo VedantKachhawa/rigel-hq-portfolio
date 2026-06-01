@@ -11,10 +11,10 @@ const CURTAIN_RIGHT = "https://res.cloudinary.com/dy5er7kv5/image/upload/q_auto/
 const WORLD_BG      = "https://res.cloudinary.com/dy5er7kv5/image/upload/q_auto/f_auto/v1779706392/image_2_gkcdlx.png";
 const BOTTOM_CLOUDS = "https://res.cloudinary.com/dy5er7kv5/image/upload/q_auto/f_auto/v1779706555/bottom_clouds_xskut6.png";
 const REEL_CARDS = [
-  { label: "ALDAR",         href: "/projects/aldar",         poster: "/projects/aldar/p3.jpg" },
-  { label: "TOTEM",         href: "/projects/totem",         poster: "/projects/shani/1.png" },
-  { label: "Hershey's",     href: "/projects/hersheys",      poster: "/projects/hersheys/p1.jpg" },
-  { label: "Call Me Krazy", href: "/projects/call-me-krazy", poster: "/projects/kaleidogami/1.png" },
+  { label: "ALDAR",         href: "/projects/aldar",         poster: "https://res.cloudinary.com/dz0nu25ls/image/upload/q_auto/f_auto/v1780272541/ALDAR_coverpage_brvjsd.png" },
+  { label: "TOTEM",         href: "/projects/totem",         poster: "https://res.cloudinary.com/dz0nu25ls/image/upload/q_auto/f_auto/v1780268160/WhatsApp_Image_2026-05-26_at_2.56.36_AM_1_vazmeg.jpg" },
+  { label: "Hershey's",     href: "/projects/hersheys",      poster: "https://res.cloudinary.com/dz0nu25ls/image/upload/q_auto/f_auto/v1780272319/Hershey_coverpage_qfr96q.png" },
+  { label: "Call Me Krazy", href: "/projects/call-me-krazy", poster: "https://res.cloudinary.com/dz0nu25ls/image/upload/q_auto/f_auto/v1780269508/WhatsApp_Image_2026-05-25_at_3.34.03_AM_5_mcahol.jpg" },
 ] as const;
 
 // ─── Card data ─────────────────────────────────────────────────────────────────
