@@ -10,13 +10,8 @@ const nextConfig: NextConfig = {
   productionBrowserSourceMaps: false,
   turbopack: {},
   images: {
-    formats: ["image/avif", "image/webp"],
-    minimumCacheTTL: 2592000,
+    unoptimized: true,
     remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "res.cloudinary.com",
-      },
       {
         protocol: "https",
         hostname: "images.unsplash.com",

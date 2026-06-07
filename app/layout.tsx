@@ -6,11 +6,17 @@ import { SkipToContent } from "@/components/layout/skip-to-content";
 import { ClickSpark } from "@/components/ui/click-spark";
 import { baseMetadata } from "@/lib/metadata";
 import type { Metadata, Viewport } from "next";
-import { DM_Sans, Fraunces, Geist_Mono, Instrument_Serif, Space_Grotesk } from "next/font/google";
+import { DM_Sans, Fraunces, Geist, Geist_Mono, Instrument_Serif, Inter, Space_Grotesk } from "next/font/google";
 import { NoiseOverlay } from "@/components/ui/noise-overlay";
 import { SmoothCursor } from "@/components/ui/smooth-cursor";
 import type { ReactNode } from "react";
 import "./globals.css";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+  display: "swap",
+});
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -29,6 +35,13 @@ const instrumentSerif = Instrument_Serif({
   variable: "--font-instrument-serif",
   subsets: ["latin"],
   weight: "400",
+  display: "swap",
+});
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  weight: ["400", "500"],
   display: "swap",
 });
 
@@ -64,13 +77,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="preconnect" href="https://res.cloudinary.com" />
-        <link rel="dns-prefetch" href="https://res.cloudinary.com" />
-        <link rel="dns-prefetch" href="https://player.vimeo.com" />
         <script src="https://player.vimeo.com/api/player.js" async />
       </head>
       <body
-        className={`${geistMono.variable} ${fraunces.variable} ${instrumentSerif.variable} ${spaceGrotesk.variable} ${dmSans.variable} min-h-screen bg-background font-sans text-foreground antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} ${instrumentSerif.variable} ${inter.variable} ${spaceGrotesk.variable} ${dmSans.variable} min-h-screen bg-background font-sans text-foreground antialiased`}
       >
         <Providers>
           <ClickSpark

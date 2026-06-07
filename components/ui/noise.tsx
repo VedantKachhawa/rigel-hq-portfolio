@@ -27,7 +27,7 @@ export default function Noise({
 
     let frame = 0;
     let animationId: number;
-    const canvasSize = 256;
+    const canvasSize = 1024;
 
     const resize = () => {
       canvas.width = canvasSize;
