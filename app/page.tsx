@@ -20,7 +20,7 @@ export default function HomePage(): ReactNode {
   return (
     <>
       <ImmersiveIntro />
-      {/* Dark breathing room — user scrolls through darkness before hero reveals */}
+      {/* Dark breathing room — hero cloud (cloude_ws7l3z) overhangs into this seam */}
       <div aria-hidden="true" style={{ height: "55vh", background: "#0a0608" }} />
       <HomeWrapper>
       <main id="main-content" className="flex flex-1 flex-col">

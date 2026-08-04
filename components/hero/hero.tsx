@@ -13,8 +13,21 @@ gsap.registerPlugin(ScrollTrigger);
 const VIDEO_SRC =
   "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260314_131748_f2ca2a28-fed7-44c8-b9a9-bd9acdd5ec31.mp4";
 
+// Original cloud transition asset (overhangs into the dark spacer above the hero).
+// daklr2whx currently 401s — re-upload cloude_ws7l3z.png to a working host and update this URL.
 const CLOUD_SRC =
   "https://res.cloudinary.com/daklr2whx/image/upload/v1778597725/cloude_ws7l3z.png";
+
+function HeroCloud() {
+  return (
+    <img
+      src={CLOUD_SRC}
+      alt=""
+      className="w-full h-auto block"
+      referrerPolicy="no-referrer"
+    />
+  );
+}
 
 export function Hero(): ReactNode {
   const sectionRef = useRef<HTMLElement>(null);
@@ -86,24 +99,14 @@ export function Hero(): ReactNode {
         className="pointer-events-none absolute top-0 left-0 w-full z-[100] hidden md:block"
         aria-hidden="true"
       >
-        <img
-          src={CLOUD_SRC}
-          alt=""
-          className="w-full h-auto block"
-          referrerPolicy="no-referrer"
-        />
+        <HeroCloud />
       </motion.div>
       <motion.div
         style={{ y: cloudYMobile, translateY: "-67%" }}
         className="pointer-events-none absolute top-0 left-0 w-full z-[100] block md:hidden"
         aria-hidden="true"
       >
-        <img
-          src={CLOUD_SRC}
-          alt=""
-          className="w-full h-auto block"
-          referrerPolicy="no-referrer"
-        />
+        <HeroCloud />
       </motion.div>
 
       <video
