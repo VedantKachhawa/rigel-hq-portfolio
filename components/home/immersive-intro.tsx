@@ -5,11 +5,96 @@ import type { CSSProperties, ReactNode } from "react";
 import Link from "next/link";
 
 // ─── Assets ────────────────────────────────────────────────────────────────────
-const PORTAL_BG     = "https://res.cloudinary.com/dy5er7kv5/image/upload/q_auto/f_auto/v1779707217/image_1_vdzwae.png";
-const CURTAIN_LEFT  = "https://res.cloudinary.com/dy5er7kv5/image/upload/q_auto/f_auto/v1779706559/curtain_left_znkmva.png";
-const CURTAIN_RIGHT = "https://res.cloudinary.com/dy5er7kv5/image/upload/q_auto/f_auto/v1779706564/curtain_right_paeyym.png";
-const WORLD_BG      = "https://res.cloudinary.com/dy5er7kv5/image/upload/q_auto/f_auto/v1779706392/image_2_gkcdlx.png";
-const BOTTOM_CLOUDS = "https://res.cloudinary.com/dy5er7kv5/image/upload/q_auto/f_auto/v1779706555/bottom_clouds_xskut6.png";
+const PORTAL_BG     = "https://flick-award-65707097.figma.site/_assets/v11/bbc8d4f1308d5df012c4b0a657b44c6d92609c24.png";
+const CURTAIN_LEFT  = "https://flick-award-65707097.figma.site/_assets/v11/535b5bc4f8b600a7758bc74dc3540f405f0b89a6.png";
+const CURTAIN_RIGHT = "https://flick-award-65707097.figma.site/_assets/v11/ab14033a7fe6dcedbae303726331b6a26d9d201c.png";
+const WORLD_BG      = "https://flick-award-65707097.figma.site/_assets/v11/4f4f0651516e75fbfeebf87e12be372c0683a7fd.png";
+const BOTTOM_CLOUDS = "https://flick-award-65707097.figma.site/_assets/v11/fb811f79bccceab1c4cdbb81b5524632cffc9c52.png";
+
+type IntroLayer = "world" | "clouds" | "portal" | "curtainL" | "curtainR";
+
+const LAYER_FALLBACK: Record<IntroLayer, CSSProperties> = {
+  world: {
+    background:
+      "radial-gradient(ellipse 90% 70% at 50% 42%, #1a2438 0%, #0c1018 45%, #060408 100%)",
+  },
+  portal: {
+    background:
+      "radial-gradient(ellipse 55% 50% at 52% 38%, rgba(90,110,150,0.35) 0%, rgba(20,24,36,0.55) 40%, rgba(6,4,8,0.92) 75%, #060408 100%)",
+  },
+  clouds: {
+    height: "38vh",
+    background:
+      "linear-gradient(to top, rgba(8,6,10,0.95) 0%, rgba(20,24,36,0.55) 45%, transparent 100%)",
+    filter: "blur(1px)",
+  },
+  curtainL: {
+    background:
+      "linear-gradient(90deg, #12080c 0%, #2a1218 28%, #1a0c10 62%, transparent 100%), repeating-linear-gradient(90deg, transparent 0px, transparent 18px, rgba(0,0,0,0.18) 18px, rgba(0,0,0,0.18) 20px)",
+  },
+  curtainR: {
+    background:
+      "linear-gradient(270deg, #12080c 0%, #2a1218 28%, #1a0c10 62%, transparent 100%), repeating-linear-gradient(270deg, transparent 0px, transparent 18px, rgba(0,0,0,0.18) 18px, rgba(0,0,0,0.18) 20px)",
+  },
+};
+
+function LayerImage({
+  src,
+  layer,
+  imgStyle,
+}: {
+  src: string;
+  layer: IntroLayer;
+  imgStyle?: CSSProperties;
+}) {
+  // Assume broken until proven otherwise — dy5er7kv5 currently 401s, and
+  // onError can miss if the image fails before the handler attaches.
+  const [failed, setFailed] = useState(true);
+
+  useEffect(() => {
+    let cancelled = false;
+    const img = new Image();
+    img.onload = () => {
+      if (!cancelled) setFailed(false);
+    };
+    img.onerror = () => {
+      if (!cancelled) setFailed(true);
+    };
+    img.src = src;
+    return () => {
+      cancelled = true;
+    };
+  }, [src]);
+
+  if (failed) {
+    return (
+      <div
+        aria-hidden="true"
+        style={{
+          width: "100%",
+          height: "100%",
+          ...LAYER_FALLBACK[layer],
+        }}
+      />
+    );
+  }
+
+  return (
+    <img
+      src={src}
+      alt=""
+      onError={() => setFailed(true)}
+      style={{
+        width: "100%",
+        height: "100%",
+        objectFit: "cover",
+        display: "block",
+        ...imgStyle,
+      }}
+    />
+  );
+}
+
 const REEL_CARDS = [
   { label: "ALDAR",         href: "/projects/aldar",         poster: "https://res.cloudinary.com/dz0nu25ls/image/upload/q_auto/f_auto/v1780272541/ALDAR_coverpage_brvjsd.png" },
   { label: "TOTEM",         href: "/projects/totem",         poster: "https://res.cloudinary.com/dz0nu25ls/image/upload/q_auto/f_auto/v1780268160/WhatsApp_Image_2026-05-26_at_2.56.36_AM_1_vazmeg.jpg" },
@@ -513,11 +598,7 @@ export function ImmersiveIntro() {
           ref={worldRef}
           style={{ position: "absolute", inset: 0, transformOrigin: "50% 50%" }}
         >
-          <img
-            src={WORLD_BG}
-            alt=""
-            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-          />
+          <LayerImage src={WORLD_BG} layer="world" />
         </div>
 
         {/* ── Layer 2: Bottom Clouds ────────────────────────────────────────── */}
@@ -533,10 +614,10 @@ export function ImmersiveIntro() {
             opacity: 0.7,
           }}
         >
-          <img
+          <LayerImage
             src={BOTTOM_CLOUDS}
-            alt=""
-            style={{ width: "100%", height: "auto", display: "block" }}
+            layer="clouds"
+            imgStyle={{ height: "auto" }}
           />
         </div>
 
@@ -569,11 +650,7 @@ export function ImmersiveIntro() {
             transformOrigin: "52% 38%",
           }}
         >
-          <img
-            src={PORTAL_BG}
-            alt=""
-            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-          />
+          <LayerImage src={PORTAL_BG} layer="portal" />
         </div>
 
         {/* ── Layer 3.5: Bottom Fade ────────────────────────────────────────── */}
@@ -600,16 +677,10 @@ export function ImmersiveIntro() {
             transformOrigin: "left center",
           }}
         >
-          <img
+          <LayerImage
             src={CURTAIN_LEFT}
-            alt=""
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              objectPosition: "right center",
-              display: "block",
-            }}
+            layer="curtainL"
+            imgStyle={{ objectPosition: "right center" }}
           />
         </div>
 
@@ -623,16 +694,10 @@ export function ImmersiveIntro() {
             transformOrigin: "right center",
           }}
         >
-          <img
+          <LayerImage
             src={CURTAIN_RIGHT}
-            alt=""
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              objectPosition: "left center",
-              display: "block",
-            }}
+            layer="curtainR"
+            imgStyle={{ objectPosition: "left center" }}
           />
         </div>
 
