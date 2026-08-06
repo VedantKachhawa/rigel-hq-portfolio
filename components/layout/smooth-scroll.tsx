@@ -50,6 +50,23 @@ export function SmoothScroll({
 
     if (prefersReducedMotion) return;
 
+    // Skip Lenis entirely on touch devices.
+    //
+    // On phones and tablets, Lenis intercepts native scrolling and replays it
+    // through requestAnimationFrame. That means every scroll frame does JS work
+    // AND drives ScrollTrigger, on top of whatever WebGL is already running.
+    // It is a large share of the input lag people reported, and iOS momentum
+    // scrolling is already smoother than anything Lenis can emulate.
+    //
+    // Desktop keeps the full smooth-scroll feel — nothing changes there.
+    const isTouch = window.matchMedia("(pointer: coarse)").matches;
+
+    if (isTouch) {
+      // ScrollTrigger still needs to run; it just listens to native scroll.
+      ScrollTrigger.refresh();
+      return;
+    }
+
     const lenis = new Lenis(LENIS_OPTIONS);
     lenisRef.current = lenis;
 

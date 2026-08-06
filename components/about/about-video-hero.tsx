@@ -1,47 +1,18 @@
 "use client";
 
-import { useEffect, useRef, type ReactNode } from "react";
+import type { ReactNode } from "react";
 import { ScrollIndicator } from "@/components/ui/scroll-indicator";
+import { AmbientVideo } from "@/components/ui/ambient-video";
+import { VIDEOS } from "@/lib/media";
 
-const VIDEO_SRC =
-  "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260328_115001_bcdaa3b4-03de-47e7-ad63-ae3e392c32d4.mp4";
 
 export function AboutVideoHero(): ReactNode {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    video.style.opacity = "0";
-    const playPromise = video.play();
-    if (playPromise !== undefined) {
-      playPromise
-        .then(() => {
-          video.style.transition = "opacity 0.8s ease";
-          video.style.opacity = "1";
-        })
-        .catch(() => {
-          // autoplay blocked — show video anyway
-          video.style.opacity = "1";
-        });
-    }
-  }, []);
-
   return (
     <div className="relative min-h-screen w-full overflow-hidden bg-black">
-      <video
-        ref={videoRef}
-        autoPlay
-        loop
-        muted
-        playsInline
-        aria-hidden="true"
-        className="absolute inset-0 w-full h-full object-cover"
-        style={{ opacity: 0, objectPosition: "center 60%" }}
-      >
-        <source src={VIDEO_SRC} type="video/mp4" />
-      </video>
+      <AmbientVideo
+        src={VIDEOS.aboutHero}
+        style={{ objectPosition: "center 60%" }}
+      />
 
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/40" aria-hidden="true" />

@@ -19,13 +19,12 @@ import Image from "next/image";
 import Link from "next/link";
 import type { LucideIcon, ReactNode } from "react";
 import { Backlight } from "@/components/ui/backlight";
+import { AmbientVideo } from "@/components/ui/ambient-video";
+import { VIDEOS } from "@/lib/media";
 
-const FOOTER_VIDEO =
-  "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260429_114316_1c7889ad-2885-410e-b493-98119fee0ddb.mp4";
-const HERO_VIDEO =
-  "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260314_131748_f2ca2a28-fed7-44c8-b9a9-bd9acdd5ec31.mp4";
-const WORK_VIDEO =
-  "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260418_063509_7d167302-4fd4-480b-8260-18ab572333d4.mp4";
+const FOOTER_VIDEO = VIDEOS.footer;
+const HERO_VIDEO = VIDEOS.homeHero;
+const WORK_VIDEO = VIDEOS.projectsHero;
 
 const TEAM = [
   { name: "Vedant Kachhawa", role: "Founder & CEO", initials: "VK", photo: "https://res.cloudinary.com/dz0nu25ls/image/upload/q_auto/f_auto/v1780270962/vedant_perf_headshot_picture_fxzuzv.jpg" },
@@ -76,12 +75,7 @@ export function StudioFeatures(): ReactNode {
           {/* ── Col 1: TEAM ─────────────────────────────────── */}
           <Backlight blur={5} className="h-full">
             <div className="relative overflow-hidden rounded-2xl bg-black flex flex-col h-full min-h-[480px] md:min-h-[520px]">
-              <video
-                autoPlay loop muted playsInline aria-hidden="true"
-                className="absolute inset-0 w-full h-full object-cover opacity-55"
-              >
-                <source src={FOOTER_VIDEO} type="video/mp4" />
-              </video>
+              <AmbientVideo src={FOOTER_VIDEO} className="opacity-55" />
               <div
                 className="absolute inset-0"
                 style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.78) 70%, rgba(0,0,0,0.92) 100%)" }}
@@ -135,12 +129,7 @@ export function StudioFeatures(): ReactNode {
             {/* Stats */}
             <Backlight blur={5}>
               <div className="relative overflow-hidden rounded-2xl bg-black flex flex-col items-center justify-center flex-1 min-h-[200px] p-5">
-                <video
-                  autoPlay loop muted playsInline aria-hidden="true"
-                  className="absolute inset-0 w-full h-full object-cover opacity-40"
-                >
-                  <source src={HERO_VIDEO} type="video/mp4" />
-                </video>
+                <AmbientVideo src={HERO_VIDEO} className="opacity-40" />
                 <div className="absolute inset-0 bg-black/50" aria-hidden="true" />
                 <div className="relative z-10 flex flex-col items-center gap-1">
                   <span
@@ -163,12 +152,7 @@ export function StudioFeatures(): ReactNode {
             {/* Services */}
             <Backlight blur={5}>
               <div className="relative overflow-hidden rounded-2xl bg-black flex flex-col flex-1 min-h-[280px]">
-                <video
-                  autoPlay loop muted playsInline aria-hidden="true"
-                  className="absolute inset-0 w-full h-full object-cover opacity-40"
-                >
-                  <source src={WORK_VIDEO} type="video/mp4" />
-                </video>
+                <AmbientVideo src={WORK_VIDEO} className="opacity-40" />
                 <div className="absolute inset-0 bg-black/55" aria-hidden="true" />
 
                 <div className="relative z-10 p-5 sm:p-6 pb-4">

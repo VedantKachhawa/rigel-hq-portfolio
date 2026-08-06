@@ -7,11 +7,11 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion, useScroll, useTransform } from "motion/react";
 import { CardNav } from "@/components/layout/card-nav";
 import { ScrollIndicator } from "@/components/ui/scroll-indicator";
+import { AmbientVideo } from "@/components/ui/ambient-video";
+import { VIDEOS } from "@/lib/media";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const VIDEO_SRC =
-  "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260314_131748_f2ca2a28-fed7-44c8-b9a9-bd9acdd5ec31.mp4";
 
 // Original cloud transition asset (overhangs into the dark spacer above the hero).
 // daklr2whx currently 401s — re-upload cloude_ws7l3z.png to a working host and update this URL.
@@ -109,12 +109,7 @@ export function Hero(): ReactNode {
         <HeroCloud />
       </motion.div>
 
-      <video
-        autoPlay loop muted playsInline aria-hidden="true"
-        className="absolute inset-0 w-full h-full object-cover z-0"
-      >
-        <source src={VIDEO_SRC} type="video/mp4" />
-      </video>
+      <AmbientVideo src={VIDEOS.homeHero} className="z-0" />
 
       <div className="absolute inset-0 bg-black/25 z-[1]" aria-hidden="true" />
 

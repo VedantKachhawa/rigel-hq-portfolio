@@ -392,16 +392,21 @@ export default function Lanyard({
   transparent = true,
 }: LanyardProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [isMobile, setIsMobile] = useState(
-    () => typeof window !== "undefined" && window.innerWidth < 768
-  );
+  // Start at the cheap setting and upgrade after mount. Reading `window` in the
+  // initial state produces a server/client hydration mismatch, which React
+  // resolves by throwing away and re-rendering the whole WebGL tree.
+  const [isMobile, setIsMobile] = useState(true);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
   // Generate the combined card texture once
   const cardImageSrc = useCardTexture();
 
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    const handleResize = () =>
+      setIsMobile(
+        window.innerWidth < 768 || window.matchMedia("(pointer: coarse)").matches
+      );
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -425,13 +430,35 @@ export default function Lanyard({
   return (
     <div
       ref={containerRef}
-      style={{ position: "relative", width: "100%", height: "100%" }}
+      style={{
+        position: "relative",
+        width: "100%",
+        height: "100%",
+        // THIS IS THE ID-CARD FIX.
+        //
+        // Without `touchAction: none`, a finger drag on the card is claimed by
+        // BOTH the page scroller and the card's pointer handlers. The browser
+        // scrolls, the pointer events keep firing against a moving viewport,
+        // and the physics body gets fed garbage deltas — which is exactly the
+        // "card goes crazy" behaviour on phones.
+        //
+        // Declaring `none` tells the browser: this element owns its gestures.
+        // Combined with the existing setPointerCapture, the drag becomes as
+        // precise on touch as it already is with a mouse.
+        touchAction: "none",
+        // Stops the pull-to-refresh / rubber-band bounce triggering mid-drag.
+        overscrollBehavior: "contain",
+      }}
     >
       <Canvas
         camera={{ position, fov }}
         dpr={[1, isMobile ? 1.5 : 2]}
         gl={{ alpha: transparent }}
-        style={{ width: dimensions.width, height: dimensions.height }}
+        style={{
+          width: dimensions.width,
+          height: dimensions.height,
+          touchAction: "none",
+        }}
         onCreated={({ gl }) =>
           gl.setClearColor(
             new THREE.Color(0x000000),

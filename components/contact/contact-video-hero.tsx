@@ -1,22 +1,13 @@
 import type { ReactNode } from "react";
 import { ScrollIndicator } from "@/components/ui/scroll-indicator";
-
-const VIDEO_SRC =
-  "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_171521_25968ba2-b594-4b32-aab7-f6b69398a6fa.mp4";
+import { AmbientVideo } from "@/components/ui/ambient-video";
+import { VIDEOS } from "@/lib/media";
 
 export function ContactVideoHero(): ReactNode {
   return (
     <section className="relative isolate h-screen w-full overflow-hidden bg-black">
       {/* Background video */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        aria-hidden="true"
-        className="absolute inset-0 w-full h-full object-cover opacity-70"
-        src={VIDEO_SRC}
-      />
+      <AmbientVideo src={VIDEOS.contactHero} className="opacity-70" />
 
       {/* Content */}
       <div className="absolute bottom-0 left-0 right-0 z-20 flex flex-col items-start justify-end px-8 pb-16 sm:px-14 sm:pb-20">

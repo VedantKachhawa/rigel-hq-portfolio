@@ -5,9 +5,9 @@ import { Instagram, Linkedin, Mail, Music2, Phone } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { AmbientVideo } from "@/components/ui/ambient-video";
+import { VIDEOS } from "@/lib/media";
 
-const FOOTER_VIDEO_SRC =
-  "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260429_114316_1c7889ad-2885-410e-b493-98119fee0ddb.mp4";
 
 const LINKS = [
   {
@@ -50,16 +50,7 @@ const SOCIALS = [
 export function Footer(): ReactNode {
   return (
     <section className="relative w-full overflow-hidden">
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        aria-hidden="true"
-        className="absolute inset-0 w-full h-full object-cover z-0"
-      >
-        <source src={FOOTER_VIDEO_SRC} type="video/mp4" />
-      </video>
+      <AmbientVideo src={VIDEOS.footer} className="z-0" />
 
       <div className="absolute inset-0 bg-black/65 z-[1]" aria-hidden="true" />
 
