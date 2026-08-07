@@ -5,11 +5,15 @@ import type { CSSProperties, ReactNode } from "react";
 import Link from "next/link";
 
 // ─── Assets ────────────────────────────────────────────────────────────────────
-const PORTAL_BG     = "https://flick-award-65707097.figma.site/_assets/v11/bbc8d4f1308d5df012c4b0a657b44c6d92609c24.png";
-const CURTAIN_LEFT  = "https://flick-award-65707097.figma.site/_assets/v11/535b5bc4f8b600a7758bc74dc3540f405f0b89a6.png";
-const CURTAIN_RIGHT = "https://flick-award-65707097.figma.site/_assets/v11/ab14033a7fe6dcedbae303726331b6a26d9d201c.png";
-const WORLD_BG      = "https://flick-award-65707097.figma.site/_assets/v11/4f4f0651516e75fbfeebf87e12be372c0683a7fd.png";
-const BOTTOM_CLOUDS = "https://flick-award-65707097.figma.site/_assets/v11/fb811f79bccceab1c4cdbb81b5524632cffc9c52.png";
+// Served locally instead of hotlinked from a Figma prototype host: those were
+// 3-7MB uncompressed PNGs (23MB across all 5 layers), which is unreliable on
+// mobile Safari — it silently drops one under memory pressure, showing a
+// broken-image icon. Re-encoded as WebP (alpha preserved), ~1.1MB total.
+const PORTAL_BG     = "/intro/portal.webp";
+const CURTAIN_LEFT  = "/intro/curtain-left.webp";
+const CURTAIN_RIGHT = "/intro/curtain-right.webp";
+const WORLD_BG      = "/intro/world.webp";
+const BOTTOM_CLOUDS = "/intro/clouds.webp";
 
 type IntroLayer = "world" | "clouds" | "portal" | "curtainL" | "curtainR";
 
