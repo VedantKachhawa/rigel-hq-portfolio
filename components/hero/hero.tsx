@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -14,17 +14,22 @@ const VIDEO_SRC =
   "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260314_131748_f2ca2a28-fed7-44c8-b9a9-bd9acdd5ec31.mp4";
 
 // Original cloud transition asset (overhangs into the dark spacer above the hero).
-// daklr2whx currently 401s — re-upload cloude_ws7l3z.png to a working host and update this URL.
+// daklr2whx 401s permanently (not our Cloudinary account, we can't fix the host) —
+// re-upload cloude_ws7l3z.png to our own account and swap this URL when available.
 const CLOUD_SRC =
   "https://res.cloudinary.com/daklr2whx/image/upload/v1778597725/cloude_ws7l3z.png";
 
 function HeroCloud() {
+  // Hide instead of showing a broken-image icon while the source 401s.
+  const [broken, setBroken] = useState(false);
+  if (broken) return null;
   return (
     <img
       src={CLOUD_SRC}
       alt=""
       className="w-full h-auto block"
       referrerPolicy="no-referrer"
+      onError={() => setBroken(true)}
     />
   );
 }
